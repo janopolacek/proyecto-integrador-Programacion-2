@@ -5,11 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 
-
+const app = express();
 
 //products
 const productsRouter = require('./routes/products')
-app.use ('/products', products)
+app.use ('/products', productsRouter)
 
 //index
 const indexRouter = require('./routes/index');
@@ -20,7 +20,7 @@ const profileRouter = require('./routes/profile');
 app.use('/profile', profileRouter);
 
 
-const app = express();
+
 
 
 // view engine setup
