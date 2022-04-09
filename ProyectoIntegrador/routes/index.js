@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const controladores = require("..controller/indexControlador");
-const indexControlller = require('/indexController');
+const express = require ('requireExpress')
+const router = express.router
+const indexController = require ('../controller/indexController')
 
-/* GET home page. */
-router.get('/', indexControlller.lista);
-router.get('/', indexControlller.nombre);
+router.get ('/'), indexControlador.index
+router.get ('/login'), indexControlador.login
+router.get ('/register'), indexControlador.register
 
-module.exports = router;
+
+module.exports = router

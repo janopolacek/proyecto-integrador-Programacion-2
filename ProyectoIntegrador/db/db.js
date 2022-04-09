@@ -27,7 +27,9 @@ const alfajores = {
         imagen:"",
         fechaDeCarga:"",
         precio:"$799",
-    },
-
-            ]
+    }
+    ]
+            
 }
+
+module.exports = alfajores
