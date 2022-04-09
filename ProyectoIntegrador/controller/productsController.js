@@ -1,7 +1,7 @@
 let lista = require('alfajores')
 let productsController = {
-   product: function (req, res) {
-        return res.render (alfajores.lista.nombre) 
+   info: function (req, res) {
+        return res.render (lista.alfajores.lista.nombre) 
     }
 
 

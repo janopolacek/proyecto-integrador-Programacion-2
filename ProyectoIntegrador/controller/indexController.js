@@ -1,8 +1,9 @@
 const data = require ('../db/db');
 
+
 const indexControlador = {
     index: function (req,res) {
-    return res.render ('index',{
+    return res.render ('index.ejs',{
         data: data.alfajores,
     })
 
@@ -17,4 +18,4 @@ const indexControlador = {
  }
 },
 
-module.exports = indexControlador
+module.exports = indexControlador;
