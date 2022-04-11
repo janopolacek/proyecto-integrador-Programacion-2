@@ -1,0 +1,39 @@
+<html>
+<head>
+    <%- Include("./partials/head") %>
+</head>
+
+<body>
+    <%- Include("./partials/header") %>
+
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Ingresar</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<form action="" method%="GET">
+				<div>
+					 <label for="usuario">Usuario:</label>
+					 <input id="usuario" type="text" name="usuario" value="">
+				 </div>
+				 <div>
+					 <label for="password">password:</label>
+					 <input id="password" type="password" name="password" value="">
+				</div>
+				<label for="imput">Recordarme</label>
+				<input type="checkbox" name="recordarme" value="true">
+				<div>
+					<button type="submit">Enviar</button>
+			   </div>
+			</form>
+
+            <%- Include("./partials/footer") %> 
+    
+
+</body>
+
+
+</html>
