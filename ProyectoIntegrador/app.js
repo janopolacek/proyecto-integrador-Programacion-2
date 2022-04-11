@@ -13,14 +13,15 @@ app.use ('/products', productsRouter)
 
 //index
 const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
+app.use('/index', indexRouter);
 
 //profile
 const profileRouter = require('./routes/profile');
 app.use('/profile', profileRouter);
 
-
-
+//search results
+const searchResultsRout = require('./routes/searchResults')
+app.use ('/search-result', searchResultsRout)
 
 
 // view engine setup

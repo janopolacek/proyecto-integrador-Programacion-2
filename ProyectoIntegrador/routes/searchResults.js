@@ -1,7 +1,7 @@
-const express = require ('requireExpress')
+const express = require ('express')
 const router = express.router
-const searchResults = require("../controller/searchResultsController")
+const searchResultsCon = require("../controller/searchResultsController")
 
-router.get ("/search-results", searchResults )
+router.get ("/search-results", searchResultsCon)
 
 module.export = router

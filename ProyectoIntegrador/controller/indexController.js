@@ -1,21 +1,19 @@
-const data = require ('../db/db');
-
+const data = require('../db/db')
 
 const indexControlador = {
-    index: function (req,res) {
-    return res.render ('index.ejs',{
-        data: data.alfajores,
-    })
+    lista: function (req, res) {
+        return res.render('index', {
+            listadoAlfajores: data.data.alfajores
+        })
+    },
+    marca: function (req, res) {
+        
+    },
+    marca: function (req, res) {
+        
+    },
+    marca: function (req, res) {
+        
+    },
+}
 
- },
-
- register: function (req,res){
-     return res.render ('register')
- },
-
- login: function (req,res){
-     return res.render('login')
- }
-},
-
-module.exports = indexControlador;
