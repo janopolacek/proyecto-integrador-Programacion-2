@@ -2,9 +2,13 @@ const express = require ('express')
 const router = express.router
 const productsControlador = require("../controller/productsController")
 
-// product add 
+// product add
+router.get ("/productos-add", productsControlador)
 // product edit 
-router.get ("/:id", productsControlador)
+router.get ("/productos-edit", productsControlador)
+
+router.get ("/:id", productsControlador.productos)
 
 
+    
 module.exports = router; 
