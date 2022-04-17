@@ -1,10 +1,10 @@
-const express = require ('express')
-const router = express.router
-const profileControlador = require("../controller/profileController")
+const express = require('express');
+const router = express.Router();
+const profileController = require('../controllers/profileController')
 
-router.get ("/profile", profileControlador)
-//perfil edit 
-// profile de otro usuario 
+/* GET home page. */
+router.get('/', profileController.index);
 
+router.get('/edit', profileController.edit);
 
-module.exports = router
+module.exports = router;

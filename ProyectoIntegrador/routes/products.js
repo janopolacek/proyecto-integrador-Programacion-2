@@ -1,5 +1,6 @@
 const express = require ('express')
-const router = express.router
+// poner la R mayuscula y los parentesesis en expres.Router();
+const router = express.Router();
 const productsControlador = require("../controller/productsController")
 
 // product add
