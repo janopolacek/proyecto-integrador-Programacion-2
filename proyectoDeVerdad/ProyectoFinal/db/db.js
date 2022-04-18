@@ -3,7 +3,7 @@
     {
         nombre: "Terrabusi clasico" ,
         descripcion: " Alfajor sabor dulce de leche de 6 unidades. Una explosión de sabor en tu boca, un amor para tu paladar",
-        imagen:'/images/descarga (1).png',
+        imagen:'/images/terrabusi.jpg',
         fechaDeCarga:"04/04/2022",
         precio: "$360",
         id: 0,
@@ -11,7 +11,7 @@
     {
         nombre: "Mini torta Aguila" ,
         descripcion: "Sabor brownie de 74 gramos",
-        imagen:'/images/descarga (1).png',
+        imagen:'/images/aguila.jpg',
         fechaDeCarga:"04/04/2022",
         precio: "$154",
         id: 1,
@@ -19,15 +19,15 @@
     {
         nombre: "Triple Tofi" ,
         descripcion: "Negro con dulce de leche de 73 gramos",
-        imagen:'/images/descarga (1).png',
+        imagen:'/images/tofi.jpg',
         fechaDeCarga:"04/04/2022",
         precio: "$124",
         id: 2,
     },
     {
-        nombre: "Caja de alfajores Guauymallen",
+        nombre: "Caja de alfajores Guaymallen",
         descripcion:"40 unidades de puro placer sabor membrillo",
-        imagen:'/images/descarga (1).png',
+        imagen:'/images/guaymallen.jpg',
         fechaDeCarga:"04/04/2022",
         precio:"$799",
         id: 3,
