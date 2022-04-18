@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+
+<%- include("./partials/head", {titulo:"Editar Producto"}) %>
+
+<body>
+	<!-- Header -->
+    <%- include("./partials/headerLogueado") %>
+	<!-- /Header -->
+
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar productos</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<form action="" method%="GET">
+				<div>
+					 <label for="nombre">Nombre:</label>
+					 <input id="nombre" type="text" name="nombre" value="">
+				 </div>				
+					
+				  	<div>
+					<label for="Descripción">Descripción:</label>
+					<input id="Descripción" type="text" name="Descripción" value="">
+					</div>
+
+				   <div>
+					<label for="imagen del producto">imagen del producto:</label>
+					<input id="imagen del producto" type="file" name="imagen del producto" value="">
+				   </div>
+				   <div>
+					<label for="Fecha de carga">Fecha de carga:</label>
+					<input id="Fecha de carga" type="date" name="Fecha de carga" value="">
+					   </div>
+			 
+			   <div>
+					 <button type="submit">Enviar</button>
+				</div>
+			</form>
+            <%- include("./partials/footer") %>
+</body>
+
+</html>

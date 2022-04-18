@@ -1,0 +1,58 @@
+<html>
+<head>
+    <%- include("./partials/head", {titulo:"Producto"}) %>
+</head>
+<body>
+    <%- include("./partials/header") %>
+    <main>
+    	<!-- product detail -->
+	<div class="container products-wrapper">
+		<div class="d-flex align-items-center">
+			<h2 class="products-title">Caja de Guaymallen</h2> 
+			<p class="product-detail-description">
+				<a href="product-add.html">Editar</a>
+			</p>
+		</div>
+		<div class="product-detail">
+			<div class="row">
+				<article class="col-12 col-lg-8 product-detail-info">
+					<% for (let i = 0; i < 1; i++) { %>
+						<img src="/images/descarga (1).png" alt=" " class="product-detail-img">
+						<p class="product-detail-description">
+						<%= listadoAlfajores[i].descripcion %> 	
+						</p>		
+					<% } %> 
+					
+					
+				</article>
+				<div class="col-12 col-lg-4">
+					<section class="comments">
+						<article>
+							<img src="https://via.placeholder.com/35" alt="">
+							<div class="data">
+								<% for (let i = 0; i < 1; i++) { %>
+									<p class="user">
+										<strong> <a href="">Nombre usuario: </a> </strong>
+										<%= listaDeComentarios[i].comentario %>	
+									</p>
+								<% } %> 
+								
+							</div>
+						</article>
+
+					</section>
+					<form class="form" action="" method="POST">
+						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+					</form>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /product detail -->
+   </main>
+   <%- include("./partials/footer") %>
+</body>
+
+</html>
