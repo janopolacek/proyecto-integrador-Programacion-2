@@ -8,16 +8,17 @@
             </div>
 
             <div class="col-7 col-md-6">
-                <form action="/search-results/id" method="GET" class="search-form">
-                    <input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
+                <form action="/products/products/:id" method="GET" class="search-form">
+                    <input type="text" name="search" placeholder="Busca el alfajor adecuado para vos" class="search-form_input">
                     <button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
                 </form>
             </div>
 
             <div class="col-12 col-md-4">
                 <a class="main-header_credit-link">
-                    <i class="fas fa-hand-holding-usd"></i>
-                   Catalogo de alfajores numero 1 de Argentina
+                   
+                    MERCADO PRESO, el catalogo de alfajores numero 1 de Argentina
+
                 </a>
             </div>
         </div>
@@ -32,12 +33,12 @@
             </ul>
 
             <ul class="right-navbar">
-                <li><a href="/profile">
+                <li><a href="/register">
                       Registrate <i class="fas fa-user"></i>
                     </a>
                 </li>
                 <li>
-                    <form action="/" method="get">
+                    <form action="/login" method="get">
                         <button class="logout" type="submit">
                            Iniciar sesión <i class="fas fa-sign-in-alt"></i>
                         </button>

@@ -9,6 +9,7 @@ var profileRouter = require('./routes/profile');
 var productsRouter = require('./routes/products');
 
 
+
 var app = express();
 
 // view engine setup
