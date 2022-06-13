@@ -8,5 +8,5 @@ router.get('/', indexController.lista);
 router.get('/register', indexController.register);
 
 router.get('/login', indexController.login)
-
+router.post( '/login', indexController.processLogin)
 module.exports = router;
