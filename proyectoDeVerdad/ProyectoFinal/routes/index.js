@@ -6,7 +6,9 @@ const indexController = require('../controller/indexController')
 router.get('/', indexController.lista);
 
 router.get('/register', indexController.register);
+router.post('/register/store', indexController.store) //action del formulario 
+
 
 router.get('/login', indexController.login)
-router.post( '/login', indexController.processLogin)
+
 module.exports = router;
