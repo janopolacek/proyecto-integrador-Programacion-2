@@ -1,0 +1,45 @@
+CREATE TABLE alfajores (
+id int(11) AI PK unique ,
+nombre varchar(200), 
+descripcion text ,
+fechaCarga datetime ,
+precio smallint(6) ,
+createdAt datetime ,
+updatedAt datetime ,
+deletedAt datetime
+)
+CREATE TABLE usuarios (
+id int(11) AI PK unique,
+usuario varchar(200), 
+mail varchar(400) ,
+password varchar(255), 
+fechaNacimiento date ,
+numeroDocumento int(11), 
+createdAt datetime ,
+updatedAt datetime ,
+deletedAt datetime
+)
+
+CREATE TABLE COMENTARIOS (
+id INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,
+comentarios VARCHAR(600) ,
+createdAt datetime,
+updatedAt datetime,
+deletedAt datetime 
+);
+
+ALTER TABLE usuarios
+MODIFY mail VARCHAR(255) UNIQUE NOT NULL;
+
+INSERT INTO alfajores 
+VALUES
+(default, 'Terrabusi clasico', 'Alfajor sabor dulce de leche de 6 unidades. Una explocion de sabor en tu boca, un amor para tu paladar.','2022-05-05', '360','2022-05-04','2022-05-04',null),
+(default, 'Mini torata aguila', 'Sabor brownie de 74 gramos', '2022-05-05', '120','2022-05-04','2022-05-04',null),
+(default, 'Triple Tofi', 'Negro con dulce de leche de 73 gramos.', '2022-05-05', '160','2022-05-04','2022-05-04',null),
+(default, 'Caja de alfajores Guaymallen', '40 unidades de puro placer sabor membrillo', '2022-05-05', '800', '2022-05-04','2022-05-04',null);
+
+INSERT INTO usuarios
+VALUES
+(default, 'Gonza', 'Gelia@udesa.edu.ar', 'perroprimo', '1996-10-08', '43768441', curdate(),'2022-05-04',null),
+(default, 'Bauti', 'Blinares@ude203edu.ar', 'perroprimo420', '2002-11-05','44513826', '2022-05-04','2022-05-04',null),
+(default, 'Jano', 'Jpolacek@udesa.edu.ar', 'perroprimo425', '2002-09-23', '44452133', '2022-05-04','2022-05-04',null)
