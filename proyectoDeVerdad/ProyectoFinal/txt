@@ -1,45 +1,72 @@
-CREATE TABLE alfajores (
-id int(11) AI PK unique ,
-nombre varchar(200), 
-descripcion text ,
-fechaCarga datetime ,
-precio smallint(6) ,
-createdAt datetime ,
-updatedAt datetime ,
-deletedAt datetime
-)
-CREATE TABLE usuarios (
-id int(11) AI PK unique,
-usuario varchar(200), 
-mail varchar(400) ,
-password varchar(255), 
+CREATE SCHEMA Proyecto_integrador2;
+
+USE Proyecto_integrador2;
+
+CREATE TABLE Users (
+id int PRIMARY KEY  auto_increment UNIQUE NOT NULL,
+usuario varchar(150) UNIQUE NOT NULL, 
+mail varchar(255) UNIQUE NOT NULL,
+password varchar(255) NOT NULL, 
 fechaNacimiento date ,
-numeroDocumento int(11), 
+numeroDocumento INT, 
 createdAt datetime ,
 updatedAt datetime ,
 deletedAt datetime
+) ;
+CREATE TABLE PRODUCTS (
+id int PRIMARY KEY  auto_increment UNIQUE NOT NULL,
+nombre varchar(200) NOT NULL , 
+descripcion text NOT NULL ,
+fechaCarga datetime NOT NULL  ,
+precio smallint NOT NULL ,
+Users_id INT ,
+fOREIGN KEY (Users_id) REFERENCES Users(id),
+createdAt datetime ,
+updatedAt datetime ,
+deletedAt datetime
+<<<<<<< HEAD
 )
 
 CREATE TABLE COMENTARIOS (
 id INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,
 comentarios VARCHAR(600) ,
+=======
+);
+
+CREATE TABLE Comentarios (
+id INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,
+comentarioS VARCHAR(600) ,
+Users_id INT ,
+fOREIGN KEY (Users_id) REFERENCES Users(id),
+Products_id INT, 
+fOREIGN KEY (Products_id) REFERENCES Products(id),
+>>>>>>> c5041bdc4f7534e147e1e862dffd36cbab5a8076
 createdAt datetime,
 updatedAt datetime,
 deletedAt datetime 
+
 );
 
-ALTER TABLE usuarios
-MODIFY mail VARCHAR(255) UNIQUE NOT NULL;
+CREATE TABLE Followers (
+	id INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT,
+    User_id INT NOT NULL,
+    Follower_id INT NOT NULL,
+    
+    FOREIGN KEY (User_id) REFERENCES Users(id),
+	FOREIGN KEY (Follower_id) REFERENCES Users(id)
+);
 
-INSERT INTO alfajores 
+
+INSERT INTO products 
 VALUES
-(default, 'Terrabusi clasico', 'Alfajor sabor dulce de leche de 6 unidades. Una explocion de sabor en tu boca, un amor para tu paladar.','2022-05-05', '360','2022-05-04','2022-05-04',null),
-(default, 'Mini torata aguila', 'Sabor brownie de 74 gramos', '2022-05-05', '120','2022-05-04','2022-05-04',null),
-(default, 'Triple Tofi', 'Negro con dulce de leche de 73 gramos.', '2022-05-05', '160','2022-05-04','2022-05-04',null),
-(default, 'Caja de alfajores Guaymallen', '40 unidades de puro placer sabor membrillo', '2022-05-05', '800', '2022-05-04','2022-05-04',null);
+(default, 'Terrabusi clasico', 'Alfajor sabor dulce de leche de 6 unidades.','2022-05-05', '360', default, '2022-05-04','2022-05-04',null),
+(default, 'Mini torata aguila', 'Sabor brownie de 74 gramos', '2022-05-05', '120',default, '2022-05-04','2022-05-04',null),
+(default, 'Triple Tofi', 'Negro con dulce de leche de 73 gramos.', '2022-05-05', '160', default,'2022-05-04','2022-05-04',null),
+(default, 'Caja de alfajores Guaymallen', '40 unidades de puro placer sabor membrillo', '2022-05-05', '800', default, '2022-05-04','2022-05-04',null);
 
-INSERT INTO usuarios
+INSERT INTO users 
 VALUES
 (default, 'Gonza', 'Gelia@udesa.edu.ar', 'perroprimo', '1996-10-08', '43768441', curdate(),'2022-05-04',null),
 (default, 'Bauti', 'Blinares@ude203edu.ar', 'perroprimo420', '2002-11-05','44513826', '2022-05-04','2022-05-04',null),
 (default, 'Jano', 'Jpolacek@udesa.edu.ar', 'perroprimo425', '2002-09-23', '44452133', '2022-05-04','2022-05-04',null)
+
