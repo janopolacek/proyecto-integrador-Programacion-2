@@ -1,9 +1,9 @@
-const data = require('../db/db')
+const data = require('../database/models')
 
 const searchResultsCon = {
     index: function (req, res) {
         return res.render('search-results', {
-            alfajoresLista: data.alfajores,
+            alfajoresLista: data.producto,
         })
     },
     register: function (req,res) {

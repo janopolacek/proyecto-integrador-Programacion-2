@@ -1,10 +1,10 @@
-const data = require('../db/db')
+const data = require('../database/models')
 
 const productController = {
     productos: function (req, res) {
         return res.render('products', {
-            listadoAlfajores: data.alfajores,
-            listaDeComentarios:data.comentarios,
+            listadoAlfajores: data.producto,
+            listaDeComentarios:data.comentario,
             id: req.params.id,
         
         })

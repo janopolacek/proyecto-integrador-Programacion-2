@@ -1,10 +1,10 @@
-const data = require('../db/db')
+const data = require('../database/models')
 
 const profileController = {
     index: function(req, res) {
         return res.render('profile',{
             data: data.usuario,
-            productos: data.alfajores,
+            productos: data.producto,
         })
     },
     edit: function(req, res) {
