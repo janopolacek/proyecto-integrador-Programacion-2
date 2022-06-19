@@ -14,7 +14,13 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.INTEGER,
         },
         comentarios:{
-            type:dataTypes.STRING(400)
+            type:dataTypes.STRING(600)
+        },
+        Users_id:{
+            type:dataTypes.INTEGER
+        },
+        Products_id:{
+            type:dataTypes.INTEGER
         },
         createdAt:{
             type:dataTypes.DATETIME
@@ -22,20 +28,35 @@ module.exports = function (sequelize, dataTypes){
         updatedAt:{
             type:dataTypes.DATETIME
         },
+        deletedAt:{
+            type: dataTypes.DATETIME
+        }
     }
 
     //Configuraciones adicionales
     let config = {
         tableName: 'comentarios', //Nombre de la tabla en la base de datos.
-        timestamps: false, //Si la tabla no tiene los campos createdAt y updatedAt. En caso contrario, va true
-        underscored: false, //Si la tabla tiene columnas con nombres usando guiones bajos. En caso contrario, va false
+        timestamps: true, //Si la tabla no tiene los campos createdAt y updatedAt. En caso contrario, va true
+        underscored: true, //Si la tabla tiene columnas con nombres usando guiones bajos. En caso contrario, va false
     }
 
     const comentario = sequelize.define(alias, cols, config);
 
-    
     //Relaciones entre tablas.
+    comentario.associate = function(models){
+        comentario.belongsTo(models.Producto,
+            {
+                as: 'productoComentado',
+                foreignKey: 'Products_id'
+            });
 
+        comentario.belongsTo(models.Usuario,
+            {
+                as: 'comentador',
+                foreignKey: 'Users_id'
+            });
+
+    }
 
     return comentario;
 }

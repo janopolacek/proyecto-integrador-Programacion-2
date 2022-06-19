@@ -13,6 +13,7 @@ createdAt datetime ,
 updatedAt datetime ,
 deletedAt datetime
 ) ;
+
 CREATE TABLE PRODUCTS (
 id int PRIMARY KEY  auto_increment UNIQUE NOT NULL,
 nombre varchar(200) NOT NULL , 
@@ -24,23 +25,16 @@ fOREIGN KEY (Users_id) REFERENCES Users(id),
 createdAt datetime ,
 updatedAt datetime ,
 deletedAt datetime
-<<<<<<< HEAD
-)
-
-CREATE TABLE COMENTARIOS (
-id INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,
-comentarios VARCHAR(600) ,
-=======
 );
+
 
 CREATE TABLE Comentarios (
 id INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,
-comentarioS VARCHAR(600) ,
+comentarios VARCHAR(600) ,
 Users_id INT ,
 fOREIGN KEY (Users_id) REFERENCES Users(id),
 Products_id INT, 
 fOREIGN KEY (Products_id) REFERENCES Products(id),
->>>>>>> c5041bdc4f7534e147e1e862dffd36cbab5a8076
 createdAt datetime,
 updatedAt datetime,
 deletedAt datetime 
