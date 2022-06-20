@@ -31,16 +31,16 @@ module.exports = function (sequelize, dataTypes) {
             type:dataTypes.DATE
         },
         numeroDocumento:{
-            type:dataTypes.INTEGER
+            type:dataTypes.INTEGER,
         },
         createdAt:{
-            type:dataTypes.DATETIME
+            type:dataTypes.DATE
         },
         updatedAt:{
-            type:dataTypes.DATETIME
+            type:dataTypes.DATE
         },
         deletedAt:{
-            type:dataTypes.DATETIME
+            type:dataTypes.DATE
         },
     }
 
@@ -48,7 +48,8 @@ module.exports = function (sequelize, dataTypes) {
     let config = {
         tableName: 'Users', //Nombre de la tabla en la base de datos.
         timestamps: true, //Si la tabla no tiene los campos createdAt y updatedAt. En caso contrario, va true
-        underscored: false, //Si la tabla tiene columnas con nombres usando guiones bajos. En caso contrario, va false
+        createdAt:'createdAt',
+        updatedAt:'updatedAt'
     }
 
     const Usuario = sequelize.define(alias, cols, config);
@@ -57,14 +58,14 @@ module.exports = function (sequelize, dataTypes) {
     Usuario.associate = function(models){
         Usuario.hasMany(models.Producto, 
             {
-                as: 'posteos',
-                foreignKey: 'id'
+                as: 'Producto',
+                foreignKey: 'Users_id'
             });
 
         Usuario.hasMany(models.Comentario,
             {
-                as: 'comentarios',
-                foreignKey: 'id'
+                as: 'Comentario',
+                foreignKey: 'Users_id'
             });
     }
 

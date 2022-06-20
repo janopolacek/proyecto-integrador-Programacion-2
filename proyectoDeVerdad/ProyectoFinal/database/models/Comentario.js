@@ -23,13 +23,13 @@ module.exports = function (sequelize, dataTypes){
             type:dataTypes.INTEGER
         },
         createdAt:{
-            type:dataTypes.DATETIME
+            type:dataTypes.DATE
         },
         updatedAt:{
-            type:dataTypes.DATETIME
+            type:dataTypes.DATE
         },
         deletedAt:{
-            type: dataTypes.DATETIME
+            type: dataTypes.DATE
         }
     }
 

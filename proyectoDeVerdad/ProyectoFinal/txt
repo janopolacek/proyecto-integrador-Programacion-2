@@ -21,7 +21,7 @@ descripcion text NOT NULL ,
 fechaCarga datetime NOT NULL  ,
 precio smallint NOT NULL ,
 Users_id INT ,
-fOREIGN KEY (Users_id) REFERENCES Users(id),
+foreign key (Users_id) REFERENCES Users(id),
 createdAt datetime ,
 updatedAt datetime ,
 deletedAt datetime

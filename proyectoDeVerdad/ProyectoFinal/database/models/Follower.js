@@ -32,8 +32,8 @@ module.exports = function (sequelize, dataTypes){
     
     //Relaciones entre tablas.
 
-    UserFollower.associate = function(models){
-        UserFollower.belongsToMany(models.UserFollower, {
+    Follower.associate = function(models){
+        Follower.belongsToMany(models.Follower, {
         as: "Followers",
         through: "user_follower",
         foreignKey: "User_id",

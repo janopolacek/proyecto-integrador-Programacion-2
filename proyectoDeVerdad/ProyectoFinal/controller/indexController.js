@@ -1,5 +1,5 @@
 const data = require('../database/models')
-const user = data.usuario
+const producto = data.Producto
 const bcrypt = require('bcryptjs')
 
 
@@ -35,7 +35,34 @@ const indexController = {
     signin: function(req,res){
 
 
+
+
+
+
+        user.findOne({
+            where:[{mail: req.body.mail}]
+        })
+        .then(function(user){
+            //falta la validacion si existe o no el mail
+         if(user){
+            req.session.user = user.dataValues ;
+         }
+         console.log(req.session.user); //para ver si existe la session 
+            return res.redirect('/')
+        })
+        .catch(error => console.log(error))
+
     },
+  //  logout:  function (req, res) {
+    
+   //     req.session.destroy();
+
+    //    if (req.cookies.//user id !== undefined) {
+     //       res.clearCookie('userId')
+     //   }
+     //   return res.redirect('/');
+
+  //  }
 }
 
 module.exports = indexController;
