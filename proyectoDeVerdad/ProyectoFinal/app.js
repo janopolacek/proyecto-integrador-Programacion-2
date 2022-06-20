@@ -27,7 +27,7 @@ resave:false,
 saveUninitialized:true,
 }));
 app.use(function(req,res,next){
-  if(req.session.user != undefinid){
+  if(req.session.user != undefined){
     res.locals.user = req.session.user
     //1:30 de clase de session y cookies
   }
