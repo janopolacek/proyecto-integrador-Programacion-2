@@ -1,62 +1,61 @@
-module.exports = function (sequelize, dataTypes){
+module.exports = function (Sequelize,DataTypes){ 
+    
+    //definir un alias que va a ser el nombre con el que vamos a llamar al modelo cuando estemos en el controlador
+    let alias = 'Comment';
 
-    //Definir un alias. El alias me permite identificar al modelo cuando lo usamos en el controlador.
-
-    let alias = 'comentario';
-
-    //Columnas y sus características
+    //columnas y sus propiedades
     let cols = {
         id:{
-            autoIncrement: true,
             primaryKey: true,
-            unique: true,
             notNull: true,
-            type: dataTypes.INTEGER,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
         },
-        comentarios:{
-            type:dataTypes.STRING(600)
+        text:{
+            notNull: true,
+            type: DataTypes.STRING,
         },
-        Users_id:{
-            type:dataTypes.INTEGER
+        ProductoId: {
+            notNull: true,
+            type: DataTypes.INTEGER,
         },
-        Products_id:{
-            type:dataTypes.INTEGER
+        UsersId: {
+            notNull: true,
+            type: DataTypes.INTEGER,
         },
         createdAt:{
-            type:dataTypes.DATE
+            notNull: true,
+            type: DataTypes.DATE,
         },
         updatedAt:{
-            type:dataTypes.DATE
-        },
-        deletedAt:{
-            type: dataTypes.DATE
+            type: DataTypes.DATE,
         }
     }
-
-    //Configuraciones adicionales
-    let config = {
-        tableName: 'comentarios', //Nombre de la tabla en la base de datos.
-        timestamps: true, //Si la tabla no tiene los campos createdAt y updatedAt. En caso contrario, va true
-        underscored: true, //Si la tabla tiene columnas con nombres usando guiones bajos. En caso contrario, va false
+    //CONFIGURACIONES ADICIONALES
+    let config = { 
+        tableName: 'comments',//puede no estar, cuando el nombre de la tabla es el nombre del modelo en plural
+        timestamps: true, //le dice al modelo si la tabla estan las columnas updatedAt y createdAt
+        underscored: false, //si la tabla tiene columnas con nombres usando _.
     }
 
-    const comentario = sequelize.define(alias, cols, config);
+    const Comment = Sequelize.define(alias, cols, config);
 
-    //Relaciones entre tablas.
-    comentario.associate = function(models){
-        comentario.belongsTo(models.Producto,
+    //Relaciones entre tablas
+
+    Comment.associate = function(models){
+        Comment.belongsTo(models.Producto,
             {
-                as: 'productoComentado',
-                foreignKey: 'Products_id'
+                as: 'CommentsProducts',
+                foreignKey: 'ProductoId'
             });
 
-        comentario.belongsTo(models.Usuario,
+        Comment.belongsTo(models.Users,
             {
-                as: 'comentador',
-                foreignKey: 'Users_id'
+                as: 'UsersComments',
+                foreignKey: 'UsersId'
             });
 
     }
 
-    return comentario;
+    return Comment;
 }

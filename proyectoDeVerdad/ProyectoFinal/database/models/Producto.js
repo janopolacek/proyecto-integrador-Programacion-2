@@ -1,65 +1,69 @@
-module.exports =  (sequelize, dataTypes)=>{
-
-    //Definir un alias. El alias me permite identificar al modelo cuando lo usamos en el controlador.
-
+module.exports = function (Sequelize,DataTypes){ //el modelo exporta una funcion
+    
+    //definir un alias que va a ser el nombre con el que vamos a llamar al modelo cuando estemos en el controlador
     let alias = 'Producto';
 
-    //Columnas y sus características
+    //columnas y sus propiedades
     let cols = {
         id:{
-            autoIncrement: true,
             primaryKey: true,
-            unique: true,
             notNull: true,
-            type: dataTypes.INTEGER,
+            autoIncrement: true,
+            type: DataTypes.INTEGER,
         },
-        nombre:{
+        image:{
             notNull: true,
-            type:dataTypes.STRING(200),
+            type: DataTypes.STRING,
+        },
+        nombre: {
+            notNull: true,
+            type: DataTypes.STRING,
+        },
+        marca:{
+            notNull: true,
+            type: DataTypes.STRING,
         },
         descripcion:{
             notNull: true,
-            type:dataTypes.STRING,
-        },
-        fechaCarga:{
-            notNull: true,
-            type:dataTypes.DATE,
-        },
-        precio:{
-            notNull: true,
-            type:dataTypes.SMALLINT,
-        },
-        Users_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.STRING,
         },
         createdAt:{
-            type:dataTypes.DATE,
+            notNull: true,
+            type: DataTypes.DATE,
         },
         updatedAt:{
-            type:dataTypes.DATE,
+            type: DataTypes.DATE,
+        },
+        
+        UsersId:{
+            notNull:true,
+            type: DataTypes.INTEGER.UNSIGNED,
         },
     }
-
-    //Configuraciones adicionales
-    let config = {
-        
-        tableName: 'Products', //Nombre de la tabla en la base de datos.
-        timestamps: true, //Si la tabla no tiene los campos createdAt y updatedAt. En caso contrario, va true
-        underscored: false, //Si la tabla tiene columnas con nombres usando guiones bajos. En caso contrario, va false
-        createdAt:'createdAt',
-        updatedAt:'updatedAt'
+    //CONFIGURACIONES ADICIONALES
+    let config = { //puede no estar, cuando el nombre de la tabla es el nombre del modelo en plural
+        tableName: 'producto',
+        timestamps: true, //le dice al modelo si la tabla estan las columnas updatedAt y createdAt
+        underscored: false, //si la tabla tiene columnas con nombres usando _.
     }
+    const Producto = Sequelize.define(alias, cols, config);
 
-    let Producto = sequelize.define(alias, cols, config);
+    //Relaciones entre tablas --> un telefono (1) pertenece a un usuario (n)
+/*
+    Producto.associate = function(models){
+        Producto.belongsTo(models.User,
+            {
+                as: 'Propietario',
+                foreignKey: 'UsersId'
+            });
+        Phone.hasMany(models.Comment,
+            {
+                as: 'comentarios',
+                foreignKey: 'ProductoId'
+            });
+    }*/
 
-    //Relaciones entre tablas.
-    
-        Producto.associate = (models) =>{
-            Producto.belongsTo(models.Usuario,{
-              as: 'Usuario',
-              foreignKey: 'Users_id'
-            })
-          }
-        
-          return Producto
+
+
+    return Producto;
 }
