@@ -1,5 +1,9 @@
-const data = require('../database/models')
-const alfajores = data.Producto
+const db = require('../database/models')
+const productos = db.Producto
+const usuarios = db.Users
+const comentarios = db.Comments
+
+
 const productController = {
     productos: function (req, res) {
         return res.render('products', {
@@ -10,7 +14,7 @@ const productController = {
         })
     },
 
-    productosAdd: function (req, res) {
+    guardar: function (req, res) {
         return res.render('product-add')},
 
         
@@ -35,8 +39,10 @@ const productController = {
             })
             .catch(error => console.log(error))  
         //3ro redirigimos a pagina
-    }
-
+    },
+    delete:function(req,res){} ,
+    comentario: function (req,res){},
+    edited: function(req,res){}
 }
 
 module.exports = productController
