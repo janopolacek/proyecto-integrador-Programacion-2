@@ -16,12 +16,20 @@
 			</div>
 		
 			<h2 class="col-12"> <i> 
-				<form action="/product/id" method="get" class="form-register-container">	
-					<input type="text" name="fuproduct" class="form-register" placeholder="Nombre de producto">
-					<input type="text" name="fuproductdesciption" class="form-register" placeholder="Descripción de producto">
-					<input type="date" name="fdate" class="form-register" placeholder="Fecha de carga">
-					<input type="file" name="fphoto" class="form-register" placeholder="">
-				</form>
+			<form action="/products/add" method="post"	
+			class="form-register-container">
+			<br>
+				<input type="text" name="nombre" class="form-register" placeholder="Nombre de producto" value="">
+			<br>
+				<input type="text" name="descripcion" class="form-register" placeholder="Descripción de producto" value="">
+			<br>
+				<input type="file" name="image" class="form-register" placeholder="" value="">
+			<br>
+				<input type="text" name="UsersId" class="form-register" placeholder="id del usuario" value="">
+			<br>
+			<br>
+				<button type="submit"> Guarda el alfajor! </button>
+			</form>
 			</h2>
 		
 	

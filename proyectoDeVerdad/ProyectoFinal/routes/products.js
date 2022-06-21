@@ -6,7 +6,7 @@ const productsControlador = require("../controller/productsController")
 router.get ("/products-add", productsControlador.productosAdd)
 // product edit 
 router.get ("/products-edit", productsControlador.productosEdit)
-
+router.post('/add',productsControlador.add)
 router.get ("/products/:id", productsControlador.productos)
 
 
