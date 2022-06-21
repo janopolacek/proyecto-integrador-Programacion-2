@@ -18,7 +18,7 @@ const productController = {
             return res.render('productEdit')},
     
     add: function(req, res){
-        res.send (req.body)
+       // res.send (req.body)
 
         //1ero vamos a querer obtener los datos del form y armar un objeto literal que vamos a guardar
         let productAdd = {
@@ -30,6 +30,7 @@ const productController = {
         //2do guardamos la info en database
         alfajores.create(productAdd)
             .then (function(respuesta) {
+                console.log(respuesta)
                 return res.redirect ('/')
             })
             .catch(error => console.log(error))  
