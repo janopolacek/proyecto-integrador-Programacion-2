@@ -41,7 +41,7 @@ const indexController = {
 
 
 
-        user.findOne({
+       /* user.findOne({
             where:[{mail: req.body.mail}]
         })
         .then(function(user){
@@ -53,18 +53,18 @@ const indexController = {
             return res.redirect('/')
         })
         .catch(error => console.log(error))
-
+*/
     },
-  //  logout:  function (req, res) {
+  /*  logout:  function (req, res) {
     
-   //     req.session.destroy();
+       req.session.destroy();
 
-    //    if (req.cookies.//user id !== undefined) {
-     //       res.clearCookie('userId')
-     //   }
+       if (req.cookies.userid !== undefined) {
+           res.clearCookie('userId')
+        }
      //   return res.redirect('/');
 
-  //  }
+  
+}*/
 }
-
 module.exports = indexController;

@@ -1,4 +1,4 @@
-const data = require('../database/models')
+const db = require('../database/models')
 const productos = db.Producto
 const usuarios = db.Users
 const comentarios = db.Comments
@@ -14,14 +14,14 @@ const productController = {
         })
     },
 
-    productosAdd: function (req, res) {
+    guardar: function (req, res) {
         return res.render('product-add')},
 
         
     productosEdit: function (req, res) {
             return res.render('productEdit')},
     
-    add: function(req, res){
+    productosAdd: function(req, res){
         res.send (req.body)
 
         //1ero vamos a querer obtener los datos del form y armar un objeto literal que vamos a guardar
@@ -38,8 +38,10 @@ const productController = {
             })
             .catch(error => console.log(error))  
         //3ro redirigimos a pagina
-    }
-
+    },
+    delete:function(req,res){} ,
+    comentario: function (req,res){},
+    edited: function(req,res){}
 }
 
 module.exports = productController
