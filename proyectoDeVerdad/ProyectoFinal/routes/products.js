@@ -31,4 +31,4 @@ router.post("/comentario/:id?" , productsController.comentario)
 
 router.post("/edited/:id", upload.single('imagen'), productsController.edited)
 
-module.exports = router; 
+module.exports = router;
