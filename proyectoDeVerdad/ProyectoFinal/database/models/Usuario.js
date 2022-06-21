@@ -45,23 +45,23 @@ module.exports = function (Sequelize,DataTypes){
         underscored: false,
 
     }
-    const User = Sequelize.define(alias, cols, config);
+    const Users = Sequelize.define(alias, cols, config);
 
 //Relaciones entre tablas
-/*
-User.associate = function(models){
-    User.hasMany(models.Producto, 
+
+Users.associate = function(models){
+    Users.hasMany(models.Producto, 
         {
             as: 'posteos',
             foreignKey: 'id'
         });
 
-    User.hasMany(models.Comment,
+    Users.hasMany(models.Comment,
         {
             as: 'comentarios',
             foreignKey: 'id'
         });
-}*/
+}
 
-return User;
+return Users;
 }
