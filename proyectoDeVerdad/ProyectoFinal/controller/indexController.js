@@ -1,5 +1,5 @@
 const data = require('../database/models')
-const user = data.Usuario
+const user = data.Users
 const bcrypt = require('bcryptjs')
 
 
@@ -24,7 +24,7 @@ const indexController = {
         }
         user.create(usuarios)
         .then(function(respuesta){
-            consol.log(respuesta)
+            console.log(respuesta)
              //return res.send(respuesta)
             return res.redirect('/login')
         })
