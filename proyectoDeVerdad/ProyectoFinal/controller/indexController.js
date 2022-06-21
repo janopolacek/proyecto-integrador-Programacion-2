@@ -1,5 +1,5 @@
 const data = require('../database/models')
-const producto = data.Producto
+const user = data.Usuario
 const bcrypt = require('bcryptjs')
 
 
@@ -16,15 +16,17 @@ const indexController = {
    
     store: function(req, res){
         let usuarios = {
-            usuario: req.body.usuario,
-            mail: req.body.mail,
+            username: req.body.usuario,
+            email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
-            fechaDeNacimiento: req.body.FechaDeNacimiento,
-            DNI: req.body.NumeroDeDocumento,
+            DNI: req.body.dni,
+          
         }
         user.create(usuarios)
         .then(function(respuesta){
-            return res.redirect('/')
+            consol.log(respuesta)
+             //return res.send(respuesta)
+            return res.redirect('/login')
         })
         .catch(error => console.log(error)) 
     },
