@@ -2,12 +2,17 @@
 <html lang="es">
 <!-- Include Head -->
 
-<%- include('./partials/head') %>
+<%- include('./partials/head', {titulo:"Editar Producto"}) %>
 
 <body>
 	<!-- Header -->
-    <%- include('./partials/headerLogueado') %>
+    <% if (locals.user) { %> 
+		<%- include('partials/headerLogueado') %>
+	<% } else { %>
+		<%- include('partials/header') %>
+	<% } %>  
 	<!-- /Header -->
+
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
@@ -16,11 +21,12 @@
 			</div>
 		
 			<h2 class="col-12"> <i> 
-				<form action="/product/id" method="get" class="form-register-container">	
+				<form action="/product/id" method="post" class="form-register-container">	
 					<input type="text" name="fuproduct" class="form-register" placeholder="Nombre de producto">
 					<input type="text" name="fuproductdesciption" class="form-register" placeholder="Descripción de producto">
 					<input type="date" name="fdate" class="form-register" placeholder="Fecha de carga">
-					<input type="file" name="fphoto" class="form-register" placeholder="">
+					<input type="file" name="fphoto" class="form-register" placeholder="ingresar imagen producto" value="ingresar imagen">
+					<button type="submit" class="btn btn-primary">Subir Producto</button>
 				</form>
 			</h2>
 		
