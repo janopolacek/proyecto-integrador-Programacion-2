@@ -104,7 +104,7 @@ const indexController = {
     signin: 
         function (req, res) {
             let errores = {}
-     
+            
             users.findOne({
                     where: [{
                         username: req.body.usuario
@@ -121,6 +121,7 @@ const indexController = {
                                 res.cookie('userId', user.dataValues.id, {
                                     maxAge: 1000 * 60 * 100
                                 })
+                                console.log(errores)
                             }
                             return res.redirect('/');
     
@@ -128,15 +129,18 @@ const indexController = {
                             errores.message = "Contraseña incorrecta" 
                             res.locals.errores = errores 
                             return res.render('login');
+                            
                         }
     
                     } else {
                         errores.message = "Ese usuario no existe" 
                         res.locals.errores = errores 
                         return res.render('login');
+                        
                     }
+                    
                 })
-                .catch(error => console.log(error))
+                .catch(error => console.log(error))  
     /*function(req,res){
          
         users.findOne({
