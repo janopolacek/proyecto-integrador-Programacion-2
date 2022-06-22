@@ -1,10 +1,10 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "progra2",
+    "password": "root",
+    "database": "progdos",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port":3306,
+    "port":8889,
   }
 }

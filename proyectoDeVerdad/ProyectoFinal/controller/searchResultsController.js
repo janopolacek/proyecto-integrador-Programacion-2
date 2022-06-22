@@ -15,7 +15,7 @@ const searchResultsCon = {
         if(palabraBuscada == "") {
             erroresBuscador.msg = 'Ingresa tu busqueda'
             res.locals.erroresBuscador = erroresBuscador;
-            return res.render('searchResults')
+            return res.render('searchresults')
         } else {  
             Promise.all([promesaNombre, promesaDescripcion])                                //Le paso como parametro un array con promesaNombre y promesaDescripcion
             .then(function([resNombre, resDescripcion]){

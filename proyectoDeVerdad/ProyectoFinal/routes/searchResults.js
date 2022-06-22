@@ -6,7 +6,7 @@ router.get ('/searchresults', searchResultsCon.index)
 router.get ('/login', searchResultsCon.login)
 router.get ('/register', searchResultsCon.register)
 
-module.export = router
+module.export = router;
 
 
 
