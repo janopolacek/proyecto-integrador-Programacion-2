@@ -14,7 +14,7 @@ Con eso vamos a poder traer el id del producto clickeado en index-->
     	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Caja de Guaymallen</h2> 
+			<h2 class="products-title"> <%= productos.nombre %> </h2>
 			<p class="product-detail-description">
 				<a href="/products/products-edit">Editar</a>
 			</p>
@@ -22,12 +22,22 @@ Con eso vamos a poder traer el id del producto clickeado en index-->
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<% for (let i = 0; i < 1; i++) { %>
-						<img src="/images/guaymallen.jpg" alt=" " class="product-detail-img">
-						<p class="product-detail-description">
-						<%= listadoAlfajores[i].descripcion %> 	
-						</p>		
-					<% } %> 
+					<img src="/images/products/<%= producto.imagen %> " alt="" class="product-detail-img">
+					<p class="product-detail-description">
+						<%= producto.descripcion %>
+					</p>
+					<h1 class="nombre"><a href="/users/profile/<%= producto.users.id %> ">Subido por
+							<%= producto.users.nombreUsuario %> </h1> </a>
+					<p> </p>
+
+					<% if (locals.user) { %>
+					<% if (locals.user.id == productos.usuario.id) { %>
+					<form action="/product/delete/<%= productos.id %> " method="post">
+						<button class="borrar" type="submit"> Borrar producto </button>
+						</form> 
+						<a href="/product/edit/<%= productos.id %>" class="borrar"> Editar producto </a> 
+						<% } %>
+					<% } %>
 					
 					
 				</article>
