@@ -19,10 +19,6 @@ module.exports = function (Sequelize,DataTypes){ //el modelo exporta una funcion
             notNull: true,
             type: DataTypes.STRING,
         },
-        marca:{
-            notNull: true,
-            type: DataTypes.STRING,
-        },
         descripcion:{
             notNull: true,
             type: DataTypes.STRING,
