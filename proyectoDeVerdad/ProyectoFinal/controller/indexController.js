@@ -6,7 +6,9 @@ const bcrypt = require('bcryptjs')
 
 const indexController = {
     lista: function (req, res) {
-        data.Producto.findAll()
+        
+       
+         data.Producto.findAll()
         .then(productos => {
             return res.render('index', {
                 listadoAlfajores: productos,

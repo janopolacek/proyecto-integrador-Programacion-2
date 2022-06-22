@@ -45,19 +45,19 @@ module.exports = function (Sequelize,DataTypes){ //el modelo exporta una funcion
     const Producto = Sequelize.define(alias, cols, config);
 
     //Relaciones entre tablas --> un telefono (1) pertenece a un usuario (n)
-/*
+
     Producto.associate = function(models){
-        Producto.belongsTo(models.User,
+        Producto.belongsTo(models.Users,
             {
                 as: 'Propietario',
                 foreignKey: 'UsersId'
             });
-        Phone.hasMany(models.Comment,
+        Producto.hasMany(models.Comment,
             {
                 as: 'comentarios',
-                foreignKey: 'ProductoId'
+                foreignKey: 'id'
             });
-    }*/
+    }
 
 
 
