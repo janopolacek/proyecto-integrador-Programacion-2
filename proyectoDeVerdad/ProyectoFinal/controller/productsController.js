@@ -92,14 +92,47 @@ const productController = {
 
 
     detail: function(req, res) {
-        db.Producto.findByPk(req.params.id)
+       /* db.Producto.findByPk(req.params.id)
         .then(producto => {
             return res.render('products', {
                 producto: producto,
             })
         })
-        .catch(error => console.log(error))
-    }
-}
+        .catch(error => console.log(error))*/
+        
+            let id = req.params.id
+            console.log(id)
+            productos.findOne({
+                    include: [{
+                        association: "Propietario"
+                    }],
+                    where: [{
+                        nombre: id
+                    }]
+                })
+                .then(function (elProducto) {
+                    comments.findAll( {
+                            include: [{
+                                association: "CommentsProducts"
+                            }, {
+                                association: "UsersComments"
+                            }],
+                            where: [{
+                                ProductoId: elProducto.id
+                            }],
+                                order: [[['id', 'DESC']]]
+                        
+                        })
+                        .then(function (comentarios) {
+                            return res.render('product', {
+                                productos: elProducto,
+                                comments: comentarios
+                            })
+                        })
+                        .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))    
+        }}
+
 
 module.exports = productController
