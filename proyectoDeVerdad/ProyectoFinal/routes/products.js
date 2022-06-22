@@ -26,7 +26,7 @@ router.post('/products-add/', upload.single('image') , productsController.guarda
 // product edit 
 router.get ("/products-edit/:id", productsController.productosEdit)
 
-router.get ("/detail/:id", productsController.detail)
+router.get ("/:id", productsController.detail)
 
 router.post("/delete/:id?", productsController.delete)
 
