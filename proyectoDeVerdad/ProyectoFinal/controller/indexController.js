@@ -35,27 +35,64 @@ const indexController = {
         return res.render('login')
     },
     signin: function(req,res){
+           /* console.log("entre al sign in");
+            users.findOne({
+                where: [{email: req.body.email}]
+            })
+                .then(function(user){
+                    //si trajo un usuario hay que chequear la contraseña con compareSync()
+                    //Si las contraseñas no coincuiden mandamos mensaje de error.
+                    console.log(req.body)
+                    console.log('el usuario es: ' + user);
+    
+                    if(user){
+                        console.log('entro al if(user)');
+                        if(bcrypt.compareSync(req.body.password, user.password)){
+                            //Si el usuario tildó recordarme creo la cookie
+                            if (req.body.remember) {
+                                res.cookie('userId',user.dataValues.id,{maxAge: 1000*60*10} );
+                            } 
+                            console.log('coinciden');
+                            req.session.user = user.dataValues;
+                            res.locals.errores = ''
+                            console.log('los errores son' + res.locals.errores);
+                            return res.redirect('/profile/' + user.dataValues.id)
+                        } else {
+                            res.locals.errores = {mensaje:"la password no concide"};
+                            console.log('los errores son' + res.locals.errores);
+                            return res.render('login')
+                        }
+    
+                    } else{
+                        res.locals.errores = {mensaje:"El email es incorrecto"}; 
+                        console.log(res.locals.errores);
+                        return res.render('login')
+                    }
+                })
+                .catch(error => console.log(error))
+            
+        },*/
 
 
 
-
-
-
-       /* user.findOne({
-            where:[{mail: req.body.mail}]
+        user.findOne({
+            where:[{username : req.body.usuario}]
         })
-        .then(function(user){
+        .then(function(users){
             //falta la validacion si existe o no el mail
          if(user){
-            req.session.user = user.dataValues ;
-         }
-         console.log(req.session.user); //para ver si existe la session 
+            req.session.user = users.dataValues ;
+            // si el usuario tildo recordame creo la cookie
+            res.cookie('userID',users.dataValues.id,{maxAge:1000*60*10})
+        }
+        console.log(req.session.user)
+        // console.log(req.session.user); //para ver si existe la session 
             return res.redirect('/')
         })
         .catch(error => console.log(error))
-*/
     },
-  /*  logout:  function (req, res) {
+    
+    logout:  function (req, res) {
     
        req.session.destroy();
 
@@ -65,6 +102,6 @@ const indexController = {
      //   return res.redirect('/');
 
   
-}*/
+}
 }
 module.exports = indexController;

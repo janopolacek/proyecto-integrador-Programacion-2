@@ -8,8 +8,8 @@ var session = require('express-session')//reqerida la session
 var indexRouter = require('./routes/index');
 var profileRouter = require('./routes/profile');
 var productsRouter = require('./routes/products');
-
-
+const data = require('./database/models')
+const users = data.users
 
 var app = express();
 
@@ -26,14 +26,32 @@ app.use(session({ secret:"Alfajores",
 resave:false,
 saveUninitialized:true,
 }));
-app.use(function(req,res,next){
+//pasar datos de sesion a vistas
+
+//paso datos a locals desde session
+app.use(function(req, res, next){
   if(req.session.user != undefined){
     res.locals.user = req.session.user
-    //1:30 de clase de session y cookies
   }
-
   return next();
 })
+
+//pregunto por la cookie
+app.use(function(req, res, next){
+  if(req.cookies.userId != undefined && req.session.user == undefined){
+    let userId = req.cookies.userId;
+
+    users.findByPk(userId)
+      .then(function(user){
+        req.session.users = user.dataValues
+        res.locals.user = user.dataValues
+        return next()
+      })
+  } else{
+    return next()
+  }
+})
+
 
 
 

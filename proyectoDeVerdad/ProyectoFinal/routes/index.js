@@ -11,5 +11,5 @@ router.post('/register/store', indexController.store) ;//action del formulario
 
 router.get('/login', indexController.login);
 router.post('/login',indexController.signin);
-//router.post('/logout', userController.logout);
+router.post('/logout', indexController.logout);
 module.exports = router;
