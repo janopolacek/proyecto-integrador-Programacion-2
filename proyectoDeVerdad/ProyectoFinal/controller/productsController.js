@@ -43,8 +43,54 @@ const productController = {
         //3ro redirigimos a pagina
     },
         delete:function(req,res){} ,
-        comentario: function (req,res){},
-        edited: function(req,res){},
+
+
+        comentario: function (req,res){
+            if (req.session.user == undefined) {
+                return res.redirect('/users/login')
+            } else {
+                let comentario = {
+                    comentario: req.body.comentario,
+                    usuarioId: req.session.user.id,
+                    productoId: req.params.id
+                }
+                comentarios.create(comentario)
+                .then (function(respuesta){
+                    productos.findByPk(req.params.id)
+                    .then (function(producto){
+                        return res.redirect (`/product/${producto.nombre}`)
+                    })
+                    .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
+            };
+        },
+
+
+        edited: function(req,res){
+           
+            let productos = {
+                nombre: req.body.nombre,
+                descripcion:req.body.descripcion,
+                image:req.file.filename,
+                UsersId: req.session.user.id,
+            }
+            productos.update(product, {
+                where: [{
+                    id: req.params.id
+                }]
+            })
+            .then(function (respuesta) {
+                productos.findByPk(req.params.id)
+                    .then(function (producto) {
+                        return res.redirect(`/product/${producto.nombre}`)
+                    })
+                    .catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
+        },
+
+
     detail: function(req, res) {
         db.Producto.findByPk(req.params.id)
         .then(producto => {
