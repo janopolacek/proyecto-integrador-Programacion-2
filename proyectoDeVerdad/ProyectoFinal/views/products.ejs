@@ -14,7 +14,7 @@ Con eso vamos a poder traer el id del producto clickeado en index-->
     	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"> <%= productos.nombre %> </h2>
+			<h2 class="products-title"> <%= producto.nombre %> </h2>
 			<p class="product-detail-description">
 				<a href="/products/products-edit">Editar</a>
 			</p>
@@ -31,11 +31,11 @@ Con eso vamos a poder traer el id del producto clickeado en index-->
 					<p> </p>
 
 					<% if (locals.user) { %>
-					<% if (locals.user.id == productos.usuario.id) { %>
-					<form action="/product/delete/<%= productos.id %> " method="post">
+					<% if (locals.user.id == producto.users.id) { %>
+					<form action="/product/delete/<%= producto.id %> " method="post">
 						<button class="borrar" type="submit"> Borrar producto </button>
 						</form> 
-						<a href="/product/edit/<%= productos.id %>" class="borrar"> Editar producto </a> 
+						<a href="/product/edit/<%= producto.id %>" class="borrar"> Editar producto </a> 
 						<% } %>
 					<% } %>
 					
