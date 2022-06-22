@@ -16,14 +16,23 @@
 			<!-- ak viene el numbre del doc al que va la informacion --> 
 			<form action="/register/store" method="post">
 				<div>
+					<%  if(locals.errores) {%> 
+						<p><%= errores.message%> </p>
+						<% } %> 
+				</div>
+				
+				<div>
+				
 					 <label for="nombre">Nombre:</label>
 					 <input id="nombre" type="text" name="usuario" value="">
 				 </div>
 				 <div>
+					
 					 <label for="email">Email:</label>
 					 <input id="email" type="email" name="email" value="">
 				</div>
 				<div>
+					
 					<label for="password">contraseña </label>
 					<input id="password" type="password" name="password" value="">
 			   	</div>

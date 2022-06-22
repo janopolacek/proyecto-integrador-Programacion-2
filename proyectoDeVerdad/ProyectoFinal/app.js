@@ -38,18 +38,20 @@ app.use(function(req, res, next){
 
 //pregunto por la cookie
 app.use(function(req, res, next){
-  if(req.cookies.userId != undefined && req.session.user == undefined){
+  if(req.cookies.userId != undefined && req.session.user == undefined ){
     let userId = req.cookies.userId;
-
+    //Tengo que ir a la db y preguntar
     users.findByPk(userId)
       .then(function(user){
-        req.session.users = user.dataValues
-        res.locals.user = user.dataValues
-        return next()
+          req.session.user = user.dataValues
+          res.locals.user = user.dataValues
+          return next();
       })
-  } else{
-    return next()
+      .catch(error => console.log(error))
+  } else {
+    return next();
   }
+    
 })
 
 

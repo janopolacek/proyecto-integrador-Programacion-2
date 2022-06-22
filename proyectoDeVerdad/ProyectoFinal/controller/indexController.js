@@ -1,5 +1,5 @@
 const data = require('../database/models')
-const user = data.Users
+const users = data.Users
 const bcrypt = require('bcryptjs')
 
 
@@ -20,82 +20,142 @@ const indexController = {
     },
    
     store: function(req, res){
+        //Detectar situaciones irregulares o errores.
+        let errores = {}
+
+        //Chequear que email no esté vacío
+        if(req.body.email == ""){
+            errores.message = "El email es obligatorio";
+            res.locals.errores = errores;
+            return res.render('register');
+        } else if(req.body.password == ""){
+            errores.message = "la contraseña es obligatoria";
+            res.locals.errores = errores;
+            return res.render('register');                     
+        } else if(req.body.usuario == undefined){
+            errores.message = "Es obligatorio completar el usuario";
+            res.locals.errores = errores;
+            return res.render('register');                     
+        }  else {
+            //Chequear que el email no exista en la base.
+            users.findOne({
+                where: [{ username: req.body.usuario}]
+            })
+            .then( function(user)     {
+                if(user !== null){
+                    errores.message = "El usuario ya existe. Por favor, elija otro.";
+                    res.locals.errores = errores;
+                    return res.render('register');
+                } else {
+                    //Obtener los datos del formulario y armar el objeto literal que quiero guardar
+                    let user = {
+                        username: req.body.usuario,
+                        email: req.body.email,
+                        password: bcrypt.hashSync(req.body.password, 10),
+                        DNI: req.body.dni,
+                    }
+                    //return res.send (user)
+                    //Guardar la info en la base de datos
+                    users.create(user)
+                        .then( function(userGuardado){ //En el parámetro recibimos el registro que se acaba de crear en la base de datos.
+                            //return res.send(userGuardado)
+                            //redirigir
+                            return res.redirect('/login')
+                        })
+                        .catch( error => console.log(error))
+                        }
+            })                
+            .catch(errors => console.log(errors))
+            }},
+                          
+            
+
+                
+
+    
+                 /* else {
+                    
+
+
         let usuarios = {
             username: req.body.usuario,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
             DNI: req.body.dni,
-          
         }
-        user.create(usuarios)
+        users.create(usuarios)
         .then(function(respuesta){
             console.log(respuesta)
              //return res.send(respuesta)
             return res.redirect('/login')
         })
-        .catch(error => console.log(error)) 
-    },
-
-    login: function (req,res) {
-        return res.render('login')
-    },
-    signin: function(req,res){
-           /* console.log("entre al sign in");
-            users.findOne({
-                where: [{email: req.body.email}]
-            })
-                .then(function(user){
-                    //si trajo un usuario hay que chequear la contraseña con compareSync()
-                    //Si las contraseñas no coincuiden mandamos mensaje de error.
-                    console.log(req.body)
-                    console.log('el usuario es: ' + user);
     
-                    if(user){
-                        console.log('entro al if(user)');
-                        if(bcrypt.compareSync(req.body.password, user.password)){
-                            //Si el usuario tildó recordarme creo la cookie
-                            if (req.body.remember) {
-                                res.cookie('userId',user.dataValues.id,{maxAge: 1000*60*10} );
-                            } 
-                            console.log('coinciden');
-                            req.session.user = user.dataValues;
-                            res.locals.errores = ''
-                            console.log('los errores son' + res.locals.errores);
-                            return res.redirect('/profile/' + user.dataValues.id)
+        .catch(error => console.log(error))}},
+    */
+        
+    
+
+    login:  function(req, res){
+        //mostrar el form de registro
+        //Chequear que un usario esté logueado
+        return res.render('login');
+        
+    },
+    signin: 
+        function (req, res) {
+            let errores = {}
+     
+            users.findOne({
+                    where: [{
+                        username: req.body.usuario
+                    }]
+                })
+    
+                .then(function (user) {
+                    if (user) {
+                        let compare = bcrypt.compareSync(req.body.password, user.password);
+                        if (compare) {
+                            req.session.user = user.dataValues; 
+    
+                            if (req.body.recordarme) {
+                                res.cookie('userId', user.dataValues.id, {
+                                    maxAge: 1000 * 60 * 100
+                                })
+                            }
+                            return res.redirect('/');
+    
                         } else {
-                            res.locals.errores = {mensaje:"la password no concide"};
-                            console.log('los errores son' + res.locals.errores);
-                            return res.render('login')
+                            errores.message = "Contraseña incorrecta" 
+                            res.locals.errores = errores 
+                            return res.render('login');
                         }
     
-                    } else{
-                        res.locals.errores = {mensaje:"El email es incorrecto"}; 
-                        console.log(res.locals.errores);
-                        return res.render('login')
+                    } else {
+                        errores.message = "Ese usuario no existe" 
+                        res.locals.errores = errores 
+                        return res.render('login');
                     }
                 })
                 .catch(error => console.log(error))
-            
-        },*/
-
-
-
-        user.findOne({
+    /*function(req,res){
+         
+        users.findOne({
             where:[{username : req.body.usuario}]
         })
         .then(function(users){
             //falta la validacion si existe o no el mail
-         if(user){
+         if(users){
             req.session.user = users.dataValues ;
             // si el usuario tildo recordame creo la cookie
-            res.cookie('userID',users.dataValues.id,{maxAge:1000*60*10})
+            res.cookie('userId',users.dataValues.id,{maxAge:1000*60*10})
         }
         console.log(req.session.user)
         // console.log(req.session.user); //para ver si existe la session 
             return res.redirect('/')
         })
-        .catch(error => console.log(error))
-    },
+        .catch(error => console.log(error))},*/
+        },
+    
     
     logout:  function (req, res) {
     
@@ -107,6 +167,6 @@ const indexController = {
      //   return res.redirect('/');
 
   
-}
-}
+},
+        }
 module.exports = indexController;
