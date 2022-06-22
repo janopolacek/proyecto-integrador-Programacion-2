@@ -163,12 +163,15 @@ const indexController = {
     
     logout:  function (req, res) {
     
+       //destruir session
        req.session.destroy();
 
-       if (req.cookies.userid !== undefined) {
+       //Eliminar cookie si existe.
+       if (req.cookies.userId !== undefined) {
            res.clearCookie('userId')
-        }
-     //   return res.redirect('/');
+       }
+
+       return res.redirect('/');
 
   
 },

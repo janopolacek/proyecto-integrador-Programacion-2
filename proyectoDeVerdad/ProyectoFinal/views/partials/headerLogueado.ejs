@@ -36,12 +36,12 @@
 				
 				<ul class="right-navbar">
 					<% if(locals.user){ %>
-			  			 <p>Hola <%= user.username%> </p>
+			  			 <p> <%= user.username%> </p>
 			  <% } else { %>
 				<p> No estas logeado</p> 
 				<% } %>
 					<li>
-						<form action="" method="post">
+						<form action="/logout" method="post">
 							<button class="logout" type="submit">
 								Cerrar sesión <i class="fas fa-sign-in-alt"></i>
 							</button>
