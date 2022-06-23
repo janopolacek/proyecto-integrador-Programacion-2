@@ -38,7 +38,8 @@ const productController = {
     productosEdit: function (req, res) {
             productos.findByPk(req.params.id)
             .then(producto => {
-                return res.render('productEdit', {producto: producto})
+               return res.render('productEdit', {producto: producto})
+              
             })
 
     },

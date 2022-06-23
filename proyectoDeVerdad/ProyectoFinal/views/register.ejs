@@ -14,7 +14,7 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<!-- ak viene el numbre del doc al que va la informacion --> 
-			<form action="/register/store" method="post">
+			<form action="/register/store" method="post" enctype="multipart/form-data"   <!--nos permite avisar que viene archivos--></form>>
 				<div>
 					<%  if(locals.errores) {%> 
 						<p><%= errores.message%> </p>
@@ -40,6 +40,9 @@
 				<label for="nuemro de documento">nuemro de documento:</label>
 				<input id="nuemro de documento" type="text" name="NumeroDeDocumento" value="">
 	 		  </div>
+			  <div>
+				<input type="file" name="image" class="form-register" placeholder="" value="">
+			  </div>
 		   <!--foto de perfil no sabemos como c hace-->
 		 <!--<input type="file" class="form-register" name="foto"> -->  
 				 <div>
