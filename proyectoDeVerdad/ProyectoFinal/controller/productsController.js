@@ -16,13 +16,16 @@ const productController = {
     },
 
     guardar: function (req, res) {
+        //return res.send (req.body) ---> voy a obtener un objeto literal con: nombreColumna: loQueEscribiEnElCampo.
           let productAdd = {
             nombre: req.body.nombre,
             descripcion:req.body.descripcion,
             image:req.file.filename,
-            UsersId: req.session.user.id,
         }
+        //1ero vamos a querer obtener los datos del form y armar un objeto literal que vamos a guardar
         //2do guardamos la info en database
+        //3ro redirigimos a pagina
+        
         productos.create(productAdd)
             .then (function(respuesta) {
                 //console.log(respuesta)
@@ -43,10 +46,7 @@ const productController = {
     productosAdd: function(req, res) {
        // res.send (req.body)
         return res.render ("product-add")
-        //1ero vamos a querer obtener los datos del form y armar un objeto literal que vamos a guardar
-   
-        //3ro redirigimos a pagina
-    },
+        },
         delete: function (req,res){
             productos.destroy({
                 where: {
