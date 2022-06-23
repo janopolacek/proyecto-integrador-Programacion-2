@@ -20,28 +20,24 @@ Con eso vamos a poder traer el id del producto clickeado en index-->
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"> <%= producto.nombre %> </h2>
 			<p class="product-detail-description">
-				<a href="/products/products-edit">Editar</a>
+				<% if (locals.user) { %>
+					<% if (locals.user.id == producto.Propietario.id) { %>
+						<a href="/products/products-edit/<%= producto.id %>">Editar producto</a>
+						<a href="/products/delete/<%= producto.id %>">Borrar producto</a>
+						<% } %>
+					<% } %>
 			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="/images/products/<%= producto.imagen %> " alt="" class="product-detail-img">
+					<img src="/images/products/<%= producto.image %> " alt="" class="product-detail-img">
 					<p class="product-detail-description">
 						<%= producto.descripcion %>
 					</p>
-					<h1 class="nombre"><a href=" ">Subido por
+					<h1 class="nombre"><a href=" "> Subido por <%= producto.Propietario.username %> 
 							 </h1> </a>
 					<p> </p>
-
-					<% if (locals.user) { %>
-					<% if (locals.user.id == producto.users.id) { %>
-					<form action="/product/delete/<%= producto.id %> " method="post">
-						<button class="borrar" type="submit"> Borrar producto </button>
-						</form> 
-						<a href="/product/edit/<%= producto.id %>" class="borrar"> Editar producto </a> 
-						<% } %>
-					<% } %>
 					
 					
 				</article>

@@ -28,10 +28,15 @@ router.get ("/products-edit/:id", productsController.productosEdit)
 
 router.get ("/:id", productsController.detail)
 
-router.post("/delete/:id?", productsController.delete)
 
 router.post("/comentario/:id?" , productsController.comentario)
 
-router.post("/edited/:id", upload.single('imagen'), productsController.edited)
+router.post("/edited/:id", upload.single('image'), productsController.edited)
+
+//product delete
+router.get ("/delete/:id", productsController.delete)
+
+//search
+router.get ("/search/results", productsController.search)
 
 module.exports = router;

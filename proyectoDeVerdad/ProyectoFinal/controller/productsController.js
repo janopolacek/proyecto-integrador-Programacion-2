@@ -1,7 +1,8 @@
 const db = require('../database/models')
 const productos = db.Producto
 const usuarios = db.Users
-const comentarios = db.Comments
+const comentarios = db.Comment
+const op = db.Sequelize.Op
 
 
 const productController = {
@@ -19,8 +20,7 @@ const productController = {
             nombre: req.body.nombre,
             descripcion:req.body.descripcion,
             image:req.file.filename,
-           // UsersId: req.session.user.id,
-            UsersId: 1,
+            UsersId: req.session.user.id,
         }
         //2do guardamos la info en database
         productos.create(productAdd)
@@ -33,7 +33,12 @@ const productController = {
 
         
     productosEdit: function (req, res) {
-            return res.render('productEdit')},
+            productos.findByPk(req.params.id)
+            .then(producto => {
+                return res.render('productEdit', {producto: producto})
+            })
+
+    },
     
     productosAdd: function(req, res) {
        // res.send (req.body)
@@ -42,7 +47,14 @@ const productController = {
    
         //3ro redirigimos a pagina
     },
-        delete:function(req,res){} ,
+        delete: function (req,res){
+            productos.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(()=> res.redirect ('/'))
+        } ,
 
 
         comentario: function (req,res){
@@ -68,24 +80,19 @@ const productController = {
 
 
         edited: function(req,res){
-           
-            let productos = {
+            let product = {
                 nombre: req.body.nombre,
                 descripcion:req.body.descripcion,
                 image:req.file.filename,
                 UsersId: req.session.user.id,
             }
             productos.update(product, {
-                where: [{
+                where: {
                     id: req.params.id
-                }]
+                }
             })
             .then(function (respuesta) {
-                productos.findByPk(req.params.id)
-                    .then(function (producto) {
-                        return res.redirect(`/product/${producto.nombre}`)
-                    })
-                    .catch(error => console.log(error))
+                return res.redirect(`/products/${req.params.id}`)
             })
             .catch(error => console.log(error))
         },
@@ -106,33 +113,53 @@ const productController = {
                     include: [{
                         association: "Propietario"
                     }],
-                    where: [{
-                        nombre: id
-                    }]
+                    where: {
+                        id: id
+                    }
                 })
                 .then(function (elProducto) {
-                    comments.findAll( {
+                    comentarios.findAll( {
                             include: [{
                                 association: "CommentsProducts"
                             }, {
                                 association: "UsersComments"
                             }],
                             where: [{
-                                ProductoId: elProducto.id
+                                ProductoId: id
                             }],
                                 order: [[['id', 'DESC']]]
                         
                         })
                         .then(function (comentarios) {
-                            return res.render('product', {
-                                productos: elProducto,
+                            //return res.send (elProducto)
+                            return res.render('products', {
+                                producto: elProducto,
                                 comments: comentarios
                             })
                         })
                         .catch(error => console.log(error))
                 })
                 .catch(error => console.log(error))    
-        }}
+        },
+    search: function(req,res) {
+        productos.findAll({
+            include: [{
+                association: "Propietario"
+            }],
+            where: {
+                [op.or]:[
+                    {nombre: {[op.like]:`%${req.query.search}%`}},
+                    {descripcion: {[op.like]:`%${req.query.search}%`}}
+                ]
+            }
+        })
+        .then(products => {
+           // res.send(products)
+            res.render('search-results', {productos: products})
+        })
+    }
+
+    }
 
 
 module.exports = productController
