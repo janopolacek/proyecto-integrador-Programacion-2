@@ -53,6 +53,7 @@ const indexController = {
                         email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, 10),
                         DNI: req.body.dni,
+                        image: req.file.filename,
                     }
                     //return res.send (user)
                     //Guardar la info en la base de datos

@@ -26,10 +26,10 @@ module.exports = function (Sequelize,DataTypes){
             notNull: true,
             type: DataTypes.INTEGER,
         },
-       /* image:{
+       image:{
             notNull: true,
             type: DataTypes.STRING,
-        },*/
+        },
         /*createdAt:{
             notNull: true,
             type: DataTypes.DATE,
