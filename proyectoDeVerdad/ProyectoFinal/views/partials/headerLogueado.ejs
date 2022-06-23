@@ -36,7 +36,7 @@
 				
 				<ul class="right-navbar">
 					<% if(locals.user){ %>
-			  			 <p> <%= user.username%> </p>
+						<a href="/profile/detail/<%=user.id%>">	 <p> <%= user.username%> </p></a>
 			  <% } else { %>
 				<p> No estas logeado</p> 
 				<% } %>
