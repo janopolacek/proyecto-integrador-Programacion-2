@@ -21,6 +21,7 @@ const productController = {
             nombre: req.body.nombre,
             descripcion:req.body.descripcion,
             image:req.file.filename,
+            UsersId: req.session.user.id,
         }
         //1ero vamos a querer obtener los datos del form y armar un objeto literal que vamos a guardar
         //2do guardamos la info en database
@@ -48,6 +49,8 @@ const productController = {
        // res.send (req.body)
         return res.render ("product-add")
         },
+       
+       
         delete: function (req,res){
             productos.destroy({
                 where: {
@@ -63,15 +66,15 @@ const productController = {
                 return res.redirect('/users/login')
             } else {
                 let comentario = {
-                    comentario: req.body.comentario,
-                    usuarioId: req.session.user.id,
+                    text: req.body.comentario,
+                    usersId: req.session.user.id,
                     productoId: req.params.id
                 }
                 comentarios.create(comentario)
                 .then (function(respuesta){
                     productos.findByPk(req.params.id)
                     .then (function(producto){
-                        return res.redirect (`/product/${producto.nombre}`)
+                        return res.redirect (`/products/${req.params.id}`)
                     })
                     .catch(error => console.log(error))
                 })
@@ -120,9 +123,9 @@ const productController = {
                 })
                 .then(function (elProducto) {
                     comentarios.findAll( {
-                            include: [{
-                                association: "CommentsProducts"
-                            }, {
+                            include: [
+                                
+                            {
                                 association: "UsersComments"
                             }],
                             where: [{

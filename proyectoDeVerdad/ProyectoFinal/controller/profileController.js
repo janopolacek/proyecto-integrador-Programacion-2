@@ -15,7 +15,7 @@ const profileController = {
             })
             .then(function (productos) {
                 users.findByPk(req.params.id)
-                    .then(function (usuarios) {
+                    .then(function (usuario) {
                         Follower.findAll({
                                 where: [{
                                     UsersId: req.params.id
@@ -31,8 +31,9 @@ const profileController = {
                                         }]
                                     })
                                     .then(function (comentarios) {
+                                      
                                         return res.render('profile', {
-                                            usuarios: usuarios,
+                                            usuario: usuario,
                                             productos: productos,
                                             Follower: Follower,
                                             comentarios: comentarios

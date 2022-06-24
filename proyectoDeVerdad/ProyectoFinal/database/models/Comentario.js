@@ -15,11 +15,11 @@ module.exports = function (Sequelize,DataTypes){
             notNull: true,
             type: DataTypes.STRING,
         },
-        ProductoId: {
+        productoId: {
             notNull: true,
             type: DataTypes.INTEGER,
         },
-        UsersId: {
+        usersId: {
             notNull: true,
             type: DataTypes.INTEGER,
         },

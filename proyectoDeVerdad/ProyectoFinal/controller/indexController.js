@@ -20,10 +20,8 @@ const indexController = {
     },
    
     store: function(req, res){
-        //Detectar situaciones irregulares o errores.
+        
         let errores = {}
-
-        //Chequear que email no esté vacío
         if(req.body.email == ""){
             errores.message = "El email es obligatorio";
             res.locals.errores = errores;
@@ -37,7 +35,7 @@ const indexController = {
             res.locals.errores = errores;
             return res.render('register');                     
         }  else {
-            //Chequear que el email no exista en la base.
+            //Chequear que el usuario no exista en la base.
             users.findOne({
                 where: [{ username: req.body.usuario}]
             })
@@ -53,14 +51,12 @@ const indexController = {
                         email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, 10),
                         DNI: req.body.dni,
-                        image: req.file.filename,
-                    }
-                    //return res.send (user)
+                        image: req.file.filename, }
+
                     //Guardar la info en la base de datos
                     users.create(user)
                         .then( function(userGuardado){ //En el parámetro recibimos el registro que se acaba de crear en la base de datos.
-                            //return res.send(userGuardado)
-                            //redirigir
+                           
                             return res.redirect('/login')
                         })
                         .catch( error => console.log(error))
@@ -142,23 +138,7 @@ const indexController = {
                     
                 })
                 .catch(error => console.log(error))  
-    /*function(req,res){
-         
-        users.findOne({
-            where:[{username : req.body.usuario}]
-        })
-        .then(function(users){
-            //falta la validacion si existe o no el mail
-         if(users){
-            req.session.user = users.dataValues ;
-            // si el usuario tildo recordame creo la cookie
-            res.cookie('userId',users.dataValues.id,{maxAge:1000*60*10})
-        }
-        console.log(req.session.user)
-        // console.log(req.session.user); //para ver si existe la session 
-            return res.redirect('/')
-        })
-        .catch(error => console.log(error))},*/
+    
         },
     
     

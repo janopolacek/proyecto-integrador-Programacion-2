@@ -46,8 +46,18 @@
 						</article>
 
 					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<ul>
+						<% for(let i = 0; i<comments.length; i++) { %>
+							<li>
+								<a href="/profile/detail/<%=comments[i].UsersComments.id%>"><%= comments[i].UsersComments.username %> </a>
+								<p> <%= comments[i].text %>  </p>
+								<p> <%= comments[i].createdAt %> </p>
+							</li>
+						<% } %> 
+
+					</ul>
+					<form class="form" action="/products/comentario/<%= producto.id%>" method="POST">
+						<input class="form-input" type="text" name="comentario"  placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<hr>
