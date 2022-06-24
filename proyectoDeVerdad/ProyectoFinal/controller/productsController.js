@@ -103,13 +103,7 @@ const productController = {
 
 
     detail: function(req, res) {
-       /* db.Producto.findByPk(req.params.id)
-        .then(producto => {
-            return res.render('products', {
-                producto: producto,
-            })
-        })
-        .catch(error => console.log(error))*/
+      
         
             let id = req.params.id
             console.log(id)

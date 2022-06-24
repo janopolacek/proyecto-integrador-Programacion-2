@@ -70,26 +70,7 @@ const indexController = {
                 
 
     
-                 /* else {
-                    
-
-
-        let usuarios = {
-            username: req.body.usuario,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            DNI: req.body.dni,
-        }
-        users.create(usuarios)
-        .then(function(respuesta){
-            console.log(respuesta)
-             //return res.send(respuesta)
-            return res.redirect('/login')
-        })
-    
-        .catch(error => console.log(error))}},
-    */
-        
+               
     
 
     login:  function(req, res){
